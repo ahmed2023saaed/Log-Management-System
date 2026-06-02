@@ -1,29 +1,70 @@
-# Logging System Backend API
+# Logging System (Full Stack Project)
 
-A backend system built with Node.js, Express, and MongoDB (Mongoose) that allows developers to manage applications and collect runtime logs with different severity levels.
+A full-stack **Log Management System** built with:
+
+- Backend: Node.js, Express, MongoDB (Mongoose)
+- Frontend: React + Tailwind CSS
+
+The system allows developers to manage applications and monitor logs in real time with filtering, sorting, and analytics.
 
 ---
 
 ## Features
 
-- Developer authentication (Register / Login / Logout)
-- Unique API key generation per developer
-- Application management (create, read, delete)
-- Log management system with levels (INFO, WARN, ERROR)
-- Automatic log counting for repeated messages
-- Filtering, sorting, and pagination for logs
-- Protected routes using JWT and API key validation
+### Authentication
+- Developer register, login, logout
+- JWT-based authentication
+- Secure route protection
+
+### API Key System
+- Each developer gets a unique API key
+- API key required for logging
+
+### Application Management
+- Create applications
+- View all applications
+- Delete applications
+- View application details
+
+### Log Management
+- Store logs with levels: INFO, WARN, ERROR
+- Auto increment count for repeated logs
+- Pagination (10 logs per page)
+- Sorting (latest / most occurred)
+- Filtering by level
+- Search logs by message
+
+### Dashboard (Frontend)
+- Developer authentication UI
+- View API key
+- Manage applications
+- View logs per application
+- Interactive table with sorting & filtering
+- Pagination controls
+- Responsive UI built with Tailwind CSS
+
+### Bonus Features (Frontend)
+- Pie chart (INFO / WARN / ERROR distribution)
+- Line chart (logs per day per level)
+- Analytics dashboard for better insights
 
 ---
 
 ## Tech Stack
 
+### Backend
 - Node.js
 - Express.js
 - MongoDB + Mongoose
-- JSON Web Token (JWT)
+- JWT (Authentication)
 - bcrypt.js
 - dotenv
+
+### Frontend
+- React (Vite)
+- Tailwind CSS
+- Axios
+- Chart.js (or other charting library)
 
 ---
 
@@ -53,67 +94,44 @@ A backend system built with Node.js, Express, and MongoDB (Mongoose) that allows
 ## API Endpoints
 
 ### Developer Routes
-- POST /api/users/register → Create a new developer
-- POST /api/users/login → Login developer
-- POST /api/users/logout → Logout developer
+- POST `/api/users/register` → Register developer
+- POST `/api/users/login` → Login developer
+- POST `/api/users/logout` → Logout developer
 
 ---
 
 ### Application Routes
-- GET /api/applications → Get all applications
-- GET /api/applications/:name → Get application by name
-- POST /api/applications → Create new application
-- DELETE /api/applications/:name → Delete application
+- GET `/api/applications` → Get all applications
+- GET `/api/applications/:name` → Get application by name
+- POST `/api/applications` → Create application
+- DELETE `/api/applications/:name` → Delete application
 
 ---
 
 ### Log Routes
+- GET `/api/applications/:name/logs`
+  - Pagination: `?page=1&limit=10`
+  - Sorting: `?sort=createdAt` or `?sort=-createdAt`
+  - Filtering: `?level=INFO|WARN|ERROR`
+  - Search: `?message=error`
 
-- GET /api/applications/:name/logs  
-Supports:
-- Pagination: ?page=1&limit=10
-- Sorting: ?sort=createdAt or ?sort=-createdAt
-- Filtering: ?level=INFO | WARN | ERROR
-
-- POST /api/applications/:name/logs  
-Headers required:
-- x-api-key: YOUR_API_KEY
+- POST `/api/applications/:name/logs`
+  - Headers:
+    - `x-api-key: YOUR_API_KEY`
 
 ---
 
 ## Security
-
-- Passwords are hashed using bcrypt
-- JWT authentication protects routes
-- API key required for creating logs
-- Middleware used for authorization and validation
-
----
-
-## Environment Variables
-
-PORT=3000  
-MONGO_URI=your_mongodb_connection_string  
-JWT_SECRET=your_secret_key  
+- Passwords hashed using bcrypt
+- JWT authentication
+- Protected routes middleware
+- API key validation for log submission
 
 ---
 
 ## Project Structure
 
-src/
-├── models/
-├── routes/
-├── controllers/
-├── middleware/
-├── config/
-├── server.js
-
----
-
-## Run Project
-
-npm install  
-npm run dev
+### Backend
 
 ---
 
