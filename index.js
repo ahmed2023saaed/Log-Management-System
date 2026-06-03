@@ -29,8 +29,11 @@ try {
 
     await mongoose.connect(process.env.DATABASE_CONNECTION_STRING);
     console.log("Connected to the database...");
+    const PORT = process.env.PORT || 3001;
 
-    server.listen(process.env.PORT_NUMBER || 3001);
+    server.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}...`);
+    });
 
 } catch (error) {
     console.log("Error connecting to the database...", error);
