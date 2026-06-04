@@ -9,9 +9,16 @@ import logsRouter from "./Logs/logs.router.js"
 import cors from "cors"
 
 let server = express();
-server.use(cors({
-    origin:"http://localhost:5173"
-}))
+
+server.enableCors({
+  origin: [
+    'http://localhost:5173', // Keep this for local dev
+    'https://log-management-system-theta.vercel.app' // Add your production URL
+  ],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+});
+
 
 dotenv.config()
 
