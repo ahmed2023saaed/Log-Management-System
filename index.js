@@ -10,14 +10,14 @@ import cors from "cors"
 
 let server = express();
 
-server.enableCors({
+server.use(cors({
   origin: [
-    'http://localhost:5173', // Keep this for local dev
-    'https://log-management-system-theta.vercel.app' // Add your production URL
+    'http://localhost:5173',
+    'https://log-management-system-theta.vercel.app'
   ],
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   credentials: true,
-});
+}));
 
 
 dotenv.config()
