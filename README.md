@@ -1,5 +1,7 @@
 # Logging System (Full Stack Project)
 
+## try Live Link https://log-management-system-theta.vercel.app/
+
 A full-stack **Log Management System** built with:
 
 - Backend: Node.js, Express, MongoDB (Mongoose)
